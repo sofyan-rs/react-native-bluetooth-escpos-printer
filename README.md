@@ -26,10 +26,10 @@ Any questions or bug please raise a issue.
 
 ### Step 1
 
-Install via NPM [Check In NPM](https://www.npmjs.com/package/@brooons/react-native-bluetooth-escpos-printer)
+Install via NPM [Check In NPM](https://www.npmjs.com/package/@sofyan.rs/react-native-bluetooth-escpos-printer)
 
 ```bash
-npm install @brooons/react-native-bluetooth-escpos-printer --save
+npm install @sofyan.rs/react-native-bluetooth-escpos-printer --save
 ```
 
 ### Step 2
@@ -37,7 +37,7 @@ npm install @brooons/react-native-bluetooth-escpos-printer --save
 Link the plugin to your RN project
 
 ```bash
-react-native link @brooons/react-native-bluetooth-escpos-printer
+react-native link @sofyan.rs/react-native-bluetooth-escpos-printer
 ```
 
 ### Manual linking (Android)
@@ -48,7 +48,7 @@ Ensure your build files match the following requirements:
 
 ```
 include ':react-native-bluetooth-escpos-printer'
-project(':react-native-bluetooth-escpos-printer').projectDir = new File(rootProject.projectDir, '../node_modules/@brooons/react-native-bluetooth-escpos-printer/android')
+project(':react-native-bluetooth-escpos-printer').projectDir = new File(rootProject.projectDir, '../node_modules/@sofyan.rs/react-native-bluetooth-escpos-printer/android')
 ```
 
 2. (React Native 0.59 and lower) Add the _`react-native-bluetooth-escpos-printer`_ as an dependency of your app in _`android/app/build.gradle`_:
@@ -72,7 +72,7 @@ import {
   BluetoothManager,
   BluetoothEscposPrinter,
   BluetoothTscPrinter,
-} from "@brooons/react-native-bluetooth-escpos-printer";
+} from "@sofyan.rs/react-native-bluetooth-escpos-printer";
 ```
 
 ## Usage and APIs

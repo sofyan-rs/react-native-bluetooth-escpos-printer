@@ -1,4 +1,4 @@
-declare module '@brooons/react-native-bluetooth-escpos-printer' {
+declare module '@sofyan.rs/react-native-bluetooth-escpos-printer' {
   namespace BluetoothEscposPrinter {
     enum DEVICE_WIDTH {
       WIDTH_58 = 384,

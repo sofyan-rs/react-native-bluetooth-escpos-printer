@@ -1,5 +1,5 @@
 rootProject.name = 'examples'
-include ':@brooons/react-native-bluetooth-escpos-printer'
-project(':@brooons/react-native-bluetooth-escpos-printer').projectDir = new File(rootProject.projectDir, '../node_modules/@brooons/react-native-bluetooth-escpos-printer/android')
+include ':@sofyan.rs/react-native-bluetooth-escpos-printer'
+project(':@sofyan.rs/react-native-bluetooth-escpos-printer').projectDir = new File(rootProject.projectDir, '../node_modules/@sofyan.rs/react-native-bluetooth-escpos-printer/android')
 
 include ':app'
