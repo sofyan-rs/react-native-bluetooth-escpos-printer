@@ -1,6 +1,6 @@
 {
-  "name": "@brooons/react-native-bluetooth-escpos-printer",
-  "version": "1.2.0",
+  "name": "@sofyan.rs/react-native-bluetooth-escpos-printer",
+  "version": "1.0.0",
   "description": "React-Native plugin for the bluetooth ESC/POS printers.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -18,5 +18,16 @@
   "license": "ISC",
   "peerDependencies": {
     "react-native": ">=0.55.4"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sofyan-rs/react-native-bluetooth-escpos-printer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sofyan-rs/react-native-bluetooth-escpos-printer/issues"
+  },
+  "homepage": "https://github.com/sofyan-rs/react-native-bluetooth-escpos-printer#readme"
 }
