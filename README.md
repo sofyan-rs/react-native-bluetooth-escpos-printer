@@ -1,8 +1,8 @@
-# @brooons/react-native-bluetooth-escpos-printer
+# @sofyan.rs/react-native-bluetooth-escpos-printer
 
 > Cloned and changed from https://github.com/januslo/react-native-bluetooth-escpos-printer
 
-[![npm version](https://badge.fury.io/js/%40brooons%2Freact-native-bluetooth-escpos-printer.svg)](https://www.npmjs.com/package/@brooons/react-native-bluetooth-escpos-printer)
+[![npm version](https://badge.fury.io/js/@sofyan.rs%2Freact-native-bluetooth-escpos-printer.svg)](https://badge.fury.io/js/@sofyan.rs%2Freact-native-bluetooth-escpos-printer)
 
 React-Native plugin for the bluetooth ESC/POS & TSC printers.
 
@@ -44,13 +44,15 @@ react-native link @brooons/react-native-bluetooth-escpos-printer
 
 Ensure your build files match the following requirements:
 
-1. (React Native 0.59 and lower) Define the *`react-native-bluetooth-escpos-printer`* project in *`android/settings.gradle`*:
+1. (React Native 0.59 and lower) Define the _`react-native-bluetooth-escpos-printer`_ project in _`android/settings.gradle`_:
 
 ```
 include ':react-native-bluetooth-escpos-printer'
 project(':react-native-bluetooth-escpos-printer').projectDir = new File(rootProject.projectDir, '../node_modules/@brooons/react-native-bluetooth-escpos-printer/android')
 ```
-2. (React Native 0.59 and lower) Add the *`react-native-bluetooth-escpos-printer`* as an dependency of your app in *`android/app/build.gradle`*:
+
+2. (React Native 0.59 and lower) Add the _`react-native-bluetooth-escpos-printer`_ as an dependency of your app in _`android/app/build.gradle`_:
+
 ```
 ...
 dependencies {
@@ -59,14 +61,18 @@ dependencies {
 }
 ```
 
-3. (React Native 0.59 and lower) Add *`import cn.jystudio.bluetooth.RNBluetoothEscposPrinterPackage;`* and *`new RNBluetoothEscposPrinterPackage()`* in your *`MainApplication.java`* :
+3. (React Native 0.59 and lower) Add _`import cn.jystudio.bluetooth.RNBluetoothEscposPrinterPackage;`_ and _`new RNBluetoothEscposPrinterPackage()`_ in your _`MainApplication.java`_ :
 
 ### Step 3
 
 Refers to your JS files
 
 ```javascript
-import { BluetoothManager, BluetoothEscposPrinter, BluetoothTscPrinter } from '@brooons/react-native-bluetooth-escpos-printer';
+import {
+  BluetoothManager,
+  BluetoothEscposPrinter,
+  BluetoothTscPrinter,
+} from "@brooons/react-native-bluetooth-escpos-printer";
 ```
 
 ## Usage and APIs
@@ -118,15 +124,18 @@ await BluetoothManager.disableBluetooth();
 Async function, scans the bluetooth devices, returns devices found and paired after scan finish. Event [BluetoothManager.EVENT_DEVICE_ALREADY_PAIRED] would be emitted with devices bound; event [BluetoothManager.EVENT_DEVICE_FOUND] would be emitted (many time) as long as new devices found.
 
 samples with events:
+
 ```javascript
 DeviceEventEmitter.addListener(
-  BluetoothManager.EVENT_DEVICE_ALREADY_PAIRED, (response) => {
+  BluetoothManager.EVENT_DEVICE_ALREADY_PAIRED,
+  (response) => {
     console.log(response);
     // response.devices would returns the paired devices array in JSON string.
   }
 );
 DeviceEventEmitter.addListener(
-  BluetoothManager.EVENT_DEVICE_FOUND, (response) => {
+  BluetoothManager.EVENT_DEVICE_FOUND,
+  (response) => {
     console.log(response);
     // response.devices would returns the found device object in JSON string
   }
@@ -140,8 +149,8 @@ const {
   found,
   paired,
 }: {
-  found: Array<{ address: string; name?: string }>;
-  paired: Device[];
+  found: Array<{ address: string, name?: string }>,
+  paired: Device[],
 } = JSON.parse(await BluetoothManager.scanDevices());
 
 return {
@@ -151,6 +160,7 @@ return {
 ```
 
 #### connect(address: string): Promise<void>
+
 async function, connects the specified device, if not bound, bound dailog prompts.
 
 ```javascript
@@ -158,6 +168,7 @@ await BluetoothManager.connect(address);
 ```
 
 #### disconnect(address: string): Promise<void>
+
 async function, disconnects the specified device.
 
 ```javascript
@@ -165,6 +176,7 @@ await BluetoothManager.disconnect(address);
 ```
 
 #### getConnectedDeviceAddress(): Promise<void>
+
 async function, Return the address of the currently connected device .
 
 ```javascript
@@ -172,6 +184,7 @@ await BluetoothManager.getConnectedDeviceAddress();
 ```
 
 #### unpair(address: string): Promise<void>
+
 async function, disconnects and unpairs the specified devices
 
 ```javascript
@@ -180,15 +193,15 @@ await BluetoothManager.unpair(address);
 
 #### Events of BluetoothManager module
 
-| Name/KEY | DESCRIPTION |
-|---|---|
-| EVENT_DEVICE_ALREADY_PAIRED | Emits the devices array already paired |
-| EVENT_DEVICE_DISCOVER_DONE | Emits when the scan done |
-| EVENT_DEVICE_FOUND | Emits when device found during scan |
-| EVENT_CONNECTION_LOST | Emits when device connection lost |
-| EVENT_UNABLE_CONNECT | Emits when error occurs while trying to connect device |
-| EVENT_CONNECTED | Emits when device connected |
-| EVENT_BLUETOOTH_NOT_SUPPORT | Emits when device not support bluetooth(android only) |
+| Name/KEY                    | DESCRIPTION                                            |
+| --------------------------- | ------------------------------------------------------ |
+| EVENT_DEVICE_ALREADY_PAIRED | Emits the devices array already paired                 |
+| EVENT_DEVICE_DISCOVER_DONE  | Emits when the scan done                               |
+| EVENT_DEVICE_FOUND          | Emits when device found during scan                    |
+| EVENT_CONNECTION_LOST       | Emits when device connection lost                      |
+| EVENT_UNABLE_CONNECT        | Emits when error occurs while trying to connect device |
+| EVENT_CONNECTED             | Emits when device connected                            |
+| EVENT_BLUETOOTH_NOT_SUPPORT | Emits when device not support bluetooth(android only)  |
 
 ### BluetoothTscPrinter
 
@@ -211,8 +224,8 @@ interface IPrintLabelOptions {
   gap?: number;
   direction?: DIRECTION;
   reference?: [number, number];
-  tear?: TEAR,
-  sound?: number,
+  tear?: TEAR;
+  sound?: number;
   text?: Array<{
     text: string;
     x: number;
@@ -242,8 +255,8 @@ interface IPrintLabelOptions {
   image?: Array<{
     x: number;
     y: number;
-    mode: BITMAP_MODE,
-    width: number,
+    mode: BITMAP_MODE;
+    width: number;
     image: string;
   }>;
 }
@@ -252,7 +265,7 @@ interface IPrintLabelOptions {
 ##### Demo of printLabel()
 
 ```javascript
-const base64Image = 'some_base_64';
+const base64Image = "some_base_64";
 
 const options = {
   width: 40,
@@ -264,21 +277,21 @@ const options = {
   sound: 0,
   text: [
     {
-      text: 'I am a testing txt',
+      text: "I am a testing txt",
       x: 20,
       y: 0,
       fonttype: BluetoothTscPrinter.FONTTYPE.SIMPLIFIED_CHINESE,
       rotation: BluetoothTscPrinter.ROTATION.ROTATION_0,
-      xscal:BluetoothTscPrinter.FONTMUL.MUL_1,
+      xscal: BluetoothTscPrinter.FONTMUL.MUL_1,
       yscal: BluetoothTscPrinter.FONTMUL.MUL_1,
     },
     {
-      text: '你在说什么呢?',
+      text: "你在说什么呢?",
       x: 20,
       y: 50,
       fonttype: BluetoothTscPrinter.FONTTYPE.SIMPLIFIED_CHINESE,
       rotation: BluetoothTscPrinter.ROTATION.ROTATION_0,
-      xscal:BluetoothTscPrinter.FONTMUL.MUL_1,
+      xscal: BluetoothTscPrinter.FONTMUL.MUL_1,
       yscal: BluetoothTscPrinter.FONTMUL.MUL_1,
     },
   ],
@@ -289,7 +302,7 @@ const options = {
       level: BluetoothTscPrinter.EEC.LEVEL_L,
       width: 3,
       rotation: BluetoothTscPrinter.ROTATION.ROTATION_0,
-      code: 'show me the money',
+      code: "show me the money",
     },
   ],
   barcode: [
@@ -300,7 +313,7 @@ const options = {
       height: 40,
       readable: 1,
       rotation: BluetoothTscPrinter.ROTATION.ROTATION_0,
-      code: '1234567890',
+      code: "1234567890",
     },
   ],
   image: [
@@ -314,6 +327,7 @@ const options = {
   ],
 };
 ```
+
 ### BluetoothEscposPrinter
 
 the printer for receipt printing, following ESC/POS command.
@@ -347,6 +361,7 @@ Set the underline of the text.
 Set the printer alignment.
 
 Constansts:
+
 - BluetoothEscposPrinter.ALIGN.LEFT
 - BluetoothEscposPrinter.ALIGN.CENTER
 - BluetoothEscposPrinter.ALIGN.RIGHT
@@ -379,6 +394,7 @@ Print texts in column, Parameters as following:
 Sets the width of the printer.
 
 Constansts:
+
 - BluetoothEscposPrinter.DEVICE_WIDTH.WIDTH_58
 - BluetoothEscposPrinter.DEVICE_WIDTH.WIDTH_80
 
@@ -417,58 +433,114 @@ Cut a paper.
 ```javascript
 await BluetoothEscposPrinter.printerAlign(BluetoothEscposPrinter.ALIGN.CENTER);
 await BluetoothEscposPrinter.setBlob(0);
-await BluetoothEscposPrinter.printText("广州俊烨\n\r",{
-  encoding: 'GBK',
+await BluetoothEscposPrinter.printText("广州俊烨\n\r", {
+  encoding: "GBK",
   codepage: 0,
   widthtimes: 3,
   heigthtimes: 3,
   fonttype: 1,
 });
 await BluetoothEscposPrinter.setBlob(0);
-await BluetoothEscposPrinter.printText("销售单\n\r",{
-  encoding: 'GBK',
+await BluetoothEscposPrinter.printText("销售单\n\r", {
+  encoding: "GBK",
   codepage: 0,
   widthtimes: 0,
   heigthtimes: 0,
   fonttype: 1,
 });
 await BluetoothEscposPrinter.printerAlign(BluetoothEscposPrinter.ALIGN.LEFT);
-await BluetoothEscposPrinter.printText("客户：零售客户\n\r",{});
-await BluetoothEscposPrinter.printText("单号：xsd201909210000001\n\r",{});
-await BluetoothEscposPrinter.printText("日期："+(dateFormat(new Date(), "yyyy-mm-dd h:MM:ss"))+"\n\r",{});
-await BluetoothEscposPrinter.printText("销售员：18664896621\n\r",{});
-await BluetoothEscposPrinter.printText("--------------------------------\n\r",{});
-let columnWidths = [12,6,6,8];
-await BluetoothEscposPrinter.printColumn(columnWidths,
-  [BluetoothEscposPrinter.ALIGN.LEFT,BluetoothEscposPrinter.ALIGN.CENTER,BluetoothEscposPrinter.ALIGN.CENTER,BluetoothEscposPrinter.ALIGN.RIGHT],
-  ["商品",'数量','单价','金额'],{});
-await BluetoothEscposPrinter.printColumn(columnWidths,
-  [BluetoothEscposPrinter.ALIGN.LEFT,BluetoothEscposPrinter.ALIGN.LEFT,BluetoothEscposPrinter.ALIGN.CENTER,BluetoothEscposPrinter.ALIGN.RIGHT],
-  ["React-Native定制开发我是比较长的位置你稍微看看是不是这样?",'1','32000','32000'],{});
-await BluetoothEscposPrinter.printText("\n\r",{});
-await BluetoothEscposPrinter.printColumn(columnWidths,
-  [BluetoothEscposPrinter.ALIGN.LEFT,BluetoothEscposPrinter.ALIGN.LEFT,BluetoothEscposPrinter.ALIGN.CENTER,BluetoothEscposPrinter.ALIGN.RIGHT],
-  ["React-Native定制开发我是比较长的位置你稍微看看是不是这样?",'1','32000','32000'],{});
-await BluetoothEscposPrinter.printText("\n\r",{});
-await BluetoothEscposPrinter.printText("--------------------------------\n\r",{});
-await BluetoothEscposPrinter.printColumn([12,8,12],
-  [BluetoothEscposPrinter.ALIGN.LEFT,BluetoothEscposPrinter.ALIGN.LEFT,BluetoothEscposPrinter.ALIGN.RIGHT],
-  ["合计",'2','64000'],{});
-await BluetoothEscposPrinter.printText("\n\r",{});
-await BluetoothEscposPrinter.printText("折扣率：100%\n\r",{});
-await BluetoothEscposPrinter.printText("折扣后应收：64000.00\n\r",{});
-await BluetoothEscposPrinter.printText("会员卡支付：0.00\n\r",{});
-await BluetoothEscposPrinter.printText("积分抵扣：0.00\n\r",{});
-await BluetoothEscposPrinter.printText("支付金额：64000.00\n\r",{});
-await BluetoothEscposPrinter.printText("结算账户：现金账户\n\r",{});
-await BluetoothEscposPrinter.printText("备注：无\n\r",{});
-await BluetoothEscposPrinter.printText("快递单号：无\n\r",{});
-await BluetoothEscposPrinter.printText("打印时间："+(dateFormat(new Date(), "yyyy-mm-dd h:MM:ss"))+"\n\r",{});
-await BluetoothEscposPrinter.printText("--------------------------------\n\r",{});
-await BluetoothEscposPrinter.printText("电话：\n\r",{});
-await BluetoothEscposPrinter.printText("地址:\n\r\n\r",{});
+await BluetoothEscposPrinter.printText("客户：零售客户\n\r", {});
+await BluetoothEscposPrinter.printText("单号：xsd201909210000001\n\r", {});
+await BluetoothEscposPrinter.printText(
+  "日期：" + dateFormat(new Date(), "yyyy-mm-dd h:MM:ss") + "\n\r",
+  {}
+);
+await BluetoothEscposPrinter.printText("销售员：18664896621\n\r", {});
+await BluetoothEscposPrinter.printText(
+  "--------------------------------\n\r",
+  {}
+);
+let columnWidths = [12, 6, 6, 8];
+await BluetoothEscposPrinter.printColumn(
+  columnWidths,
+  [
+    BluetoothEscposPrinter.ALIGN.LEFT,
+    BluetoothEscposPrinter.ALIGN.CENTER,
+    BluetoothEscposPrinter.ALIGN.CENTER,
+    BluetoothEscposPrinter.ALIGN.RIGHT,
+  ],
+  ["商品", "数量", "单价", "金额"],
+  {}
+);
+await BluetoothEscposPrinter.printColumn(
+  columnWidths,
+  [
+    BluetoothEscposPrinter.ALIGN.LEFT,
+    BluetoothEscposPrinter.ALIGN.LEFT,
+    BluetoothEscposPrinter.ALIGN.CENTER,
+    BluetoothEscposPrinter.ALIGN.RIGHT,
+  ],
+  [
+    "React-Native定制开发我是比较长的位置你稍微看看是不是这样?",
+    "1",
+    "32000",
+    "32000",
+  ],
+  {}
+);
+await BluetoothEscposPrinter.printText("\n\r", {});
+await BluetoothEscposPrinter.printColumn(
+  columnWidths,
+  [
+    BluetoothEscposPrinter.ALIGN.LEFT,
+    BluetoothEscposPrinter.ALIGN.LEFT,
+    BluetoothEscposPrinter.ALIGN.CENTER,
+    BluetoothEscposPrinter.ALIGN.RIGHT,
+  ],
+  [
+    "React-Native定制开发我是比较长的位置你稍微看看是不是这样?",
+    "1",
+    "32000",
+    "32000",
+  ],
+  {}
+);
+await BluetoothEscposPrinter.printText("\n\r", {});
+await BluetoothEscposPrinter.printText(
+  "--------------------------------\n\r",
+  {}
+);
+await BluetoothEscposPrinter.printColumn(
+  [12, 8, 12],
+  [
+    BluetoothEscposPrinter.ALIGN.LEFT,
+    BluetoothEscposPrinter.ALIGN.LEFT,
+    BluetoothEscposPrinter.ALIGN.RIGHT,
+  ],
+  ["合计", "2", "64000"],
+  {}
+);
+await BluetoothEscposPrinter.printText("\n\r", {});
+await BluetoothEscposPrinter.printText("折扣率：100%\n\r", {});
+await BluetoothEscposPrinter.printText("折扣后应收：64000.00\n\r", {});
+await BluetoothEscposPrinter.printText("会员卡支付：0.00\n\r", {});
+await BluetoothEscposPrinter.printText("积分抵扣：0.00\n\r", {});
+await BluetoothEscposPrinter.printText("支付金额：64000.00\n\r", {});
+await BluetoothEscposPrinter.printText("结算账户：现金账户\n\r", {});
+await BluetoothEscposPrinter.printText("备注：无\n\r", {});
+await BluetoothEscposPrinter.printText("快递单号：无\n\r", {});
+await BluetoothEscposPrinter.printText(
+  "打印时间：" + dateFormat(new Date(), "yyyy-mm-dd h:MM:ss") + "\n\r",
+  {}
+);
+await BluetoothEscposPrinter.printText(
+  "--------------------------------\n\r",
+  {}
+);
+await BluetoothEscposPrinter.printText("电话：\n\r", {});
+await BluetoothEscposPrinter.printText("地址:\n\r\n\r", {});
 await BluetoothEscposPrinter.printerAlign(BluetoothEscposPrinter.ALIGN.CENTER);
-await BluetoothEscposPrinter.printText("欢迎下次光临\n\r\n\r\n\r",{});
+await BluetoothEscposPrinter.printText("欢迎下次光临\n\r\n\r\n\r", {});
 await BluetoothEscposPrinter.printerAlign(BluetoothEscposPrinter.ALIGN.LEFT);
 await BluetoothEscposPrinter.cutOnePoint();
 ```
